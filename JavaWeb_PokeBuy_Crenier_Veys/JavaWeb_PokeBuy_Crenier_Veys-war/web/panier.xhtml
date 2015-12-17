@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./pokeTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view locale="#{langageController.locale}"/>
+
+    <ui:define name="head">
+        <h:outputStylesheet name="./css/panier.css"/>
+    </ui:define>
+
+    <ui:define name="section">        
+        
+        <marquee Class="Scroller" behavior="scroll" direction="left" scrollamount="4" scrolldelay="0">
+            <strong>
+                <em><h:outputText value="#{lang.bienvenue} " />
+                    <c:if test="#{clientController.isConnected}">
+                        <h:outputText value=" #{clientController.clientActuel.prenomClient}"/>
+                    </c:if>
+                </em> 
+                <h:outputText value="#{lang.bienvenueSuite}" />
+                <h:outputText value="#{lang.promo}" />
+            </strong>
+        </marquee>
+        
+        <h1><h:outputText value="#{lang.monPanier}"/></h1>
+
+        <c:choose>
+            <c:when test="#{!panierController.isEmptyListPanier()}">
+                <div class="tableau">
+
+                    <h:dataTable class="panier" id="panier" var="line" value="#{panierController.panier}">
+
+                        <h:column>
+                            <f:facet name="header" class="numero">
+                                <h:outputText value="N°"/>
+                            </f:facet>
+                            <h:outputText value="#{line.numLigne}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header" class="image">
+                                <h:outputText value="#{lang.image}"/>
+                            </f:facet>
+                            <h:graphicImage value="#{line.pokemon.cheminImg}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header" class="article">
+                                <h:outputText value="#{lang.article}"/>
+                            </f:facet>
+                            <h:outputText value="#{pokemonController.getOnePokemonByLangue(line.pokemon.idPokemon).libellePokemon}"/>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header" class="quantite">
+                                <h:outputText value="#{lang.quantite}"/>
+                            </f:facet>
+                            <h:form>
+                                <h:commandLink class="bouton moins">
+                                    <span><h:outputText value="-"/></span>
+                                    <f:ajax event="click" listener="#{panierController.articleEnMoins(line)}" render="panierDroite panier total totalCommande"/>
+                                </h:commandLink>
+
+                                <h:outputText id="quantite" value="#{line.quantite}"/>
+
+                                <h:commandLink class="bouton plus">
+                                    <span><h:outputText value="+"/></span>
+                                    <f:ajax event="click" listener="#{panierController.articleEnPlus(line)}" render="panierDroite panier total totalCommande"/>
+                                </h:commandLink>
+                            </h:form>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header" class="prix">
+                                <h:outputText value="#{lang.prixUnitaire}"/>
+                            </f:facet>
+                            <h:outputText value="#{line.prixUnitaire}">
+                                <f:convertNumber type="currency" currencySymbol="€"/>
+                            </h:outputText>
+                        </h:column>
+                        
+                        <h:column>
+                            <f:facet name="header" class="quantite">
+                                <h:outputText id="prixTotal" value="#{lang.prixTotalArticle}"/>
+                            </f:facet>
+                            <h:outputText value="#{panierController.calculTotalArticle(line)}">
+                                <f:convertNumber type="currency" currencySymbol="€"/>
+                            </h:outputText>
+                        </h:column>
+                        
+                    </h:dataTable>
+                    
+                    <div class="totauxCommande">
+                        <h:outputText class="titre" value="#{lang.prixTotal}"/>
+                        <h:outputText id="totalCommande" class="valeur" value="#{panierController.totalCommande}">
+                            <f:convertNumber type="currency" currencySymbol="€"/>
+                        </h:outputText>
+                    </div>
+                </div>
+                
+                
+                            <!--c:if test="{panierController.totalCommande gt 1000}">
+                <p><h:outputText value="{panierController.dixPourCentTotal}">
+                        <f:convertNumber type="currency" currencySymbol="€" />
+                    </h:outputText>
+                    <h:outputText value="textPromo"/>
+                </p>
+            </c:if-->
+                
+
+            <c:choose>
+                <c:when test="#{clientController.isConnected and !panierController.emptyListPanier}">
+                    <h:form>
+                        <h:commandLink class="checkout-btn" action="#{panierController.enregistrerCommande(clientController.clientActuel)}" >
+                            <h:outputText value="#{lang.verifier}" />
+                        </h:commandLink>
+                    </h:form>
+                </c:when>
+                <c:otherwise>
+                    <c:if test="#{!panierController.emptyListPanier}">
+                        <p align="center">
+                            <h:outputText value="#{lang.connectionRequise}"/>
+                        </p>
+                    </c:if>
+                </c:otherwise>
+            </c:choose>
+
+            </c:when>
+            <c:otherwise>
+                <p>
+                    <h:outputText value="#{lang.panierVide}"/>
+                </p>
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+
+
+</ui:composition>

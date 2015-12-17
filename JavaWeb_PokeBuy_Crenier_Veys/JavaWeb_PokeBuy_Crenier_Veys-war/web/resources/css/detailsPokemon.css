@@ -1,0 +1,482 @@
+/*//////////////////////////////////
+///////HEADER DETAILS POKEMON///////
+//////////////////////////////////*/
+
+.container .pokemon-pagination {
+    padding-top: 180px;
+    background: #FFFFFF;
+}
+
+.container .pokemon-pagination a {
+    box-sizing: border-box;
+    background-color: #a4a4a4;
+    cursor: pointer;
+    display: block;
+    float: left;
+    width: 50%;
+    transition: background-color 0.3s;
+}
+
+.container .pokemon-pagination a:hover{
+    background: #30a7d7;
+}
+
+.container .pokemon-pagination a.previous {
+    border-right: 4px solid #fff;
+}
+
+.container .pokemon-pagination a.previous > div, 
+.container .pokemon-pagination a.next > div {
+    float: left;
+    padding: 1em 0 4em;
+    width: 100%;
+    max-width: 448px;
+}
+
+.container .pokemon-pagination a.previous > div {
+    float: right;
+}
+
+.container .pokemon-pagination a .fleche {
+    background-color: #fff;
+    border-radius: 20px;
+    color: #616161;
+    float: left;
+    font-weight: bold;
+    height: 26px;
+    line-height: 175%;
+    margin: 6px 22px 0;
+    text-align: center;
+    width: 26px;
+}
+
+.container .pokemon-pagination a .id,
+.container .pokemon-pagination a .nom {
+    font-family: arial, sans-serif;
+    color: #ffffff;
+    float: left;
+    font-size: 150%;
+    line-height: 162.5%;
+    text-transform: none;
+    font-weight: bold;
+}
+
+.container .pokemon-pagination a .nom {
+    color: #616161;
+    margin: 0 12px;
+}
+
+.container .pokemon-pagination a.next > div span {
+    float: right;
+}
+
+.container .pokemon-pagination a.next .numero > span{
+    float:left;
+}
+
+.container .pokemon-pagination-title {
+    float: left;
+    width: 58.0325%;
+    margin-left: 20.2%;
+    background-color: #fff;
+    height: 80px;
+    margin-top: -48px;
+    border-top-right-radius: 100px;
+    border-top-left-radius: 100px;
+}
+
+.container .pokemon-pagination-title div {
+    font-family: "Flexo-Medium", arial, sans-serif;
+    color: #212121;
+    float: left;
+    font-size: 225%;
+    margin-top: 0.5em;
+    text-align: center;
+    width: 100%;
+    word-break: break-all;
+}
+
+.container .pokemon-pagination-title div .id {
+    color: #616161;
+    margin-left: 0.125em;
+}
+
+/*///////////////////////////////////
+///////CONTENU DETAILS POKEMON///////
+///////////////////////////////////*/
+
+.container section .pokemon-details {
+    display: table;
+    width: 100%;
+}
+
+.container section .pokemon-details .pokemon-details-left,
+.container section .pokemon-details .pokemon-details-right {
+    display: table-cell;
+    width: 50%;
+    padding-right: 12px;
+    vertical-align: top;
+}
+
+.container section .pokemon-details .pokemon-details-right {
+    padding-left: 30px;
+}
+
+.container section .pokemon-details .pokemon-details-image {
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    width: 100%;
+    display: block;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.container section .pokemon-details .pokemon-details-left .pokemon-details-image img {
+    width: 94%;
+    padding: 15px 0;
+}
+
+.container section .pokemon-details .pokemon-details-left .pokemon-details-info .types {
+    float: left;
+    width: 100%;
+}
+
+.container section .pokemon-details .pokemon-details-left .pokemon-details-info .type {
+    font-family: arial, sans-serif;
+    color: white;
+    display: inline-block;
+    line-height: 100%;
+    padding: 12px 0;
+    width: 30%;
+    border-radius: 5px;
+    margin: 12px 6px 0 0;
+    text-align: center;
+}
+
+.container section .pokemon-details .pokemon-details-left .pokemon-details-info h3 {
+    float: left;
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-description {
+    font-family: arial, sans-serif;
+    color: #212121;
+    font-size: 120%;
+    line-height: 150%;
+    margin: 22px 0;
+    min-height: 148px;
+}
+
+.container section .pokemon-details .pokemon-prix {
+    display: table;
+    width: 100%;
+    margin: 22px 0;
+}
+
+.container section .pokemon-details .pokemon-prix .pokemon-prix-left,
+.container section .pokemon-details .pokemon-prix .pokemon-prix-right {
+    display: table-cell;
+    width: 50%;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.container section .pokemon-details .pokemon-prix .pokemon-prix-left span, 
+.container section .pokemon-details .pokemon-prix a {
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 160%;
+    line-height: 125%;
+    text-transform: none;
+    font-family: arial, sans-serif;
+    width: 50%;
+    transition: all 0.3s ease 0s;
+    display: inline-block;
+    text-align: center;
+    padding: 5% 15%;
+    text-decoration: none;
+    height: 34px;
+}
+
+.container section .pokemon-details .pokemon-prix .prix, 
+.container section .pokemon-details .pokemon-prix .acheter {
+    background-color: #ee6b2f;
+}
+
+.container section .pokemon-details .pokemon-prix .acheter:hover {
+    background-color: #4DAD5B;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-description-info {
+    display: table;
+    background-color: #30a7d7;
+    color: #ffffff;
+    width: 100%;
+    border-radius: 10px;
+    float: left;
+    min-height: 220px;
+    margin-top: 11px;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-description-info .pokemon-description-info-left,
+.container section .pokemon-details .pokemon-details-right .pokemon-description-info .pokemon-description-info-right {
+    display: table-cell;
+    width: 50%;
+    vertical-align: top;
+    height: 100%;
+    padding: 10px 0 20px 20px;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-description-info div .titre,
+.container section .pokemon-details .pokemon-details-right .pokemon-description-info div .valeur {
+    display:block;
+    width: 100%;
+    margin: 8px 12px ;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-description-info .titre {
+    float: left;
+    font-size: 110%;
+    text-transform: none;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-description-info .valeur {
+    float: left;
+    font-size: 130%;
+    color: #212121;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-description-info .talent {
+    display:inline-block;
+    margin: 0 12px;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-description-info .talent .valeurTalent {
+    float: left;
+    font-size: 130%;
+    margin: 8px 12px 0 0;
+    color: #212121;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-stats {
+    background-color: #a4a4a4;
+    border-radius: 10px;
+    display: block;
+    float: left;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-stats h3 {
+    margin: 18px 0 12px 7.2525%;
+    
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-stats > ul > li {
+    float: left;
+    margin-right: -100%;
+    width: 12.95%;
+    display: inline-block;
+    margin: 0 1.5625% 1.25em 0; 
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-stats > ul > li:first-child {
+    margin-left: 7.2525%;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-stats > ul > li > ul {
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-stats > ul > li > ul > li {
+    background: transparent;
+    border-bottom: 0.25em solid #a4a4a4;
+    height: 0.5em;
+    width: 100%;
+    position: relative;
+    z-index: 2
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-stats > ul > li > ul > li:first-child {
+    background: #30a7d7;
+    border: none;
+    height: 120%;
+    position: absolute;
+    top: 100%;
+    z-index: 1;
+}
+
+.container section .pokemon-details .pokemon-details-right .pokemon-stats > ul > li span {
+    font-family: "Roboto", arial, sans-serif;
+    font-weight: bold;
+    color: #212121;
+    float: left;
+    font-size: 62.5%;
+    text-align: center;
+    text-transform: none;
+    width: 100%
+}
+
+/*/////////////////////
+///////TOOLTIPS///////
+////////////////////*/
+
+.tooltip
+{
+    display: inline;
+    text-decoration:none;
+    font-family: arial,sans-serif;
+    background: #FFFFFF none repeat scroll 0% 0%;
+    border-radius: 16px;
+    color: #30A7D7;
+    height: 16px;
+    line-height: 150%;
+    margin: 8px 4px;
+    text-align: center;
+    width: 16px;
+    padding: 3px;
+    font-size: 70%;
+    float: left;
+}
+
+
+.tooltip span {
+    display: none;
+    border-radius: 6px;
+    color: black;
+    background: white;
+    font-size: 140%;
+    line-height: 130%;
+}
+
+.tooltip:hover span {
+    display: block;
+    position: absolute;
+    width: 150px;
+    min-height: 60px;
+    border: 1px solid black;
+    margin-top: 8px;
+    margin-left: 8px;
+    overflow: hidden;
+    padding: 15px;
+    z-index: 4;
+}
+
+
+
+
+
+.acheter {
+  height: 100%;
+  width: 100%;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  background-color: #46b29d;
+}
+
+ .acheter span {
+  /* this is the button text message */
+  position: absolute;
+  left: 0;
+  width: 100%;
+  -webkit-font-smoothing: subpixel-antialiased;
+  
+  /* Force Hardware Acceleration */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  transition: transform 0.3s;
+}
+ .acheter svg {
+  /* this is the check icon */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  /* move the icon on the right - outside the button */
+  -webkit-transform: translateX(50%) translateY(-50%);
+  -moz-transform: translateX(50%) translateY(-50%);
+  -ms-transform: translateX(50%) translateY(-50%);
+  -o-transform: translateX(50%) translateY(-50%);
+  transform: translateX(50%) translateY(-50%);
+  
+  -webkit-transition: -webkit-transform 0.3s;
+  -moz-transition: -moz-transform 0.3s;
+  transition: transform 0.3s;
+}
+ .acheter.is-added span {
+  /* product added to the cart - hide text message on the left with no transition*/
+  color: transparent;
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transform: translateX(-100%);
+  
+  -webkit-transition: -webkit-transform 0s;
+  -moz-transition: -moz-transform 0s;
+  transition: transform 0s;
+}
+ .acheter.is-added svg {
+  /* product added to the cart - move the svg back inside the button */
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  
+  -webkit-transition: -webkit-transform 0s;
+  -moz-transition: -moz-transform 0s;
+  transition: transform 0s;
+}
+
+.bouton {
+    text-decoration: none;
+    color: white;
+    padding: 0px 12px;
+    border-radius: 5px;
+}
+
+.plus {
+    background: #4DAD5B;
+    margin-left: 20px;
+    padding-left: 6px;
+    padding-right: 12px;
+}
+
+.moins {
+    background: #E3350D;
+    margin-right: 20px;
+
+}
+
+.quantite {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    border: 2px black solid;
+    padding:12px 10px;
+    font-size: 150%;
+    border-radius:6px;
+}
+
+.quantite #qte {
+    padding-right: 30px;
+}
+
+.quantite form {
+    padding-top: 20px;
+    display: initial;
+}

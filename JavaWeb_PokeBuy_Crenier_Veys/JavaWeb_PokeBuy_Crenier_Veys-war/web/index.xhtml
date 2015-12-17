@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./pokeTemplate.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <f:view locale="#{langageController.locale}"/>
+    
+    <ui:define name="head">
+        <h:outputStylesheet name="./css/index.css"/>
+    </ui:define>
+    
+    <ui:define name="section">
+        
+        <marquee Class="Scroller" behavior="scroll" direction="left" scrollamount="4" scrolldelay="0">
+            <strong>
+                <em><h:outputText value="#{lang.bienvenue} " />
+                    <c:if test="#{clientController.isConnected}">
+                        <h:outputText value=" #{clientController.clientActuel.prenomClient}"/>
+                    </c:if>
+                </em> 
+                <h:outputText value="#{lang.bienvenueSuite}" />
+                <h:outputText value="#{lang.promo}" />
+            </strong>
+        </marquee>
+        
+        <h2><h:outputText value="#{lang.bienvenue}"/></h2>
+        
+        <h:graphicImage url="./resources/img/accueil.jpg"/>
+        
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porta justo in tellus porttitor non placerat dui pulvinar. Aliquam erat volutpat. Morbi ullamcorper libero sit amet tortor porta iaculis. Duis sit amet diam dolor. Mauris bibendum pharetra justo, sed ornare arcu scelerisque vitae. Integer molestie dignissim lacinia. Etiam sagittis consectetur iaculis. Pellentesque fringilla nulla at tortor dictum lobortis.
+        </p>
+        <p>
+            Aliquam erat volutpat. Integer pulvinar dignissim lacus eu lacinia. Sed vitae orci eget nisl ultricies feugiat quis ut velit. Sed urna mauris, viverra volutpat pulvinar et, tempus vel odio. Aenean at posuere massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam quis augue nisi, quis ornare nisl. Nulla sagittis neque at massa venenatis tincidunt. Morbi sed nibh magna, vel consectetur nisi. Nullam tortor augue, scelerisque et consequat eu, fermentum at eros. Donec scelerisque ullamcorper tincidunt.
+        </p>
+        <p>
+            Pellentesque ut nulla dolor. Sed non diam odio, ac luctus mauris. Nunc erat turpis, imperdiet vel laoreet laoreet, scelerisque vel dui. Sed nec nisl nulla, ut gravida neque. Mauris augue nibh, accumsan id viverra et, pellentesque a orci. Integer venenatis congue urna a ornare. Fusce in facilisis tortor. In lobortis est non lacus cursus venenatis. Donec a metus erat, id rhoncus turpis. Quisque vitae venenatis tellus. Donec quis risus erat, in luctus justo. Nulla ultrices, urna quis faucibus vehicula, lorem nibh tristique magna, nec tristique augue massa sit amet arcu. Donec malesuada, erat iaculis pretium ultricies, lorem nisl lacinia tellus, vel luctus augue nunc eget metus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque dignissim, orci ut ultrices aliquet, enim nisl auctor magna, nec feugiat eros lorem vehicula ipsum.
+        </p>
+        <p>
+            Maecenas vitae mauris enim, vel pretium turpis. Sed pharetra accumsan tellus. Maecenas pulvinar ipsum viverra sapien volutpat blandit. Vivamus vel massa velit. Pellentesque condimentum tincidunt aliquam. Vivamus mattis auctor diam, eu commodo massa laoreet ut. Sed congue faucibus arcu, quis hendrerit nisl pellentesque non. Nunc sagittis condimentum lacus. Cras tincidunt sem quis lorem tempor eget porta magna pulvinar. Donec molestie diam sagittis sem tristique in iaculis ligula aliquet. Aenean rutrum eleifend metus nec tempus. Integer nisi ligula, pretium in porta vel, euismod non lectus. Aliquam erat volutpat. Praesent sit amet massa purus.
+        </p>
+        <p>
+            Ut pellentesque, lectus ut porttitor ullamcorper, velit nulla dignissim tellus, eu luctus nibh mauris non arcu. Mauris viverra purus et leo condimentum adipiscing. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam condimentum facilisis lacus, quis rutrum purus tristique non. Nam vestibulum mauris eu sem porttitor accumsan. Phasellus at eleifend neque. Nam interdum ultrices commodo. Nunc dignissim aliquet dui. Nunc id nisl congue dolor pharetra pulvinar vel ac lectus. Nunc mi justo, semper id sollicitudin et, luctus eget quam. Ut condimentum porta consectetur. Donec nunc turpis, molestie ac semper ut, aliquet id nulla. Vestibulum id ipsum purus, sed tempor lacus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+        </p>
+        <p>
+            Aliquam erat volutpat. Duis euismod porta eros. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque porta tincidunt gravida. Praesent sed mi nisl, non pretium mi. Suspendisse nibh orci, mollis eget adipiscing id, malesuada quis enim. Nullam facilisis elit ut magna facilisis ac eleifend diam tempor. Curabitur et justo est, a sagittis velit. Proin mollis, libero ac luctus faucibus, ipsum risus consequat dolor, viverra sagittis felis lorem non quam. Nam risus nisl, congue a semper eu, dapibus ac nunc. Maecenas tortor nisl, pellentesque eu luctus at, viverra ut libero. Nullam quis egestas massa. Donec dapibus rhoncus risus nec tincidunt. Suspendisse condimentum ante sit amet odio consequat id suscipit ante tempus. Aenean purus leo, blandit a iaculis non, tristique ullamcorper ante.
+        </p>
+        <p>
+            Phasellus consectetur, ante nec pretium hendrerit, arcu nunc ullamcorper lectus, non pulvinar sapien nibh ac sem. Nullam dignissim erat sit amet sapien convallis ornare. In hac habitasse platea dictumst. Fusce et ante ut turpis condimentum dictum. Mauris elit justo, laoreet eget consectetur sed, suscipit ut augue. Phasellus id sollicitudin enim. Aenean et justo magna, in ultricies lectus. Nunc blandit quam rhoncus quam pretium tempor. Aenean nec fermentum nibh. Donec ornare magna nec leo tempus ac varius tortor hendrerit. Ut vel erat purus. Maecenas volutpat convallis est a sagittis.
+        </p>
+        <p>
+            Duis mattis orci at justo molestie blandit. Nunc blandit tortor vitae ipsum congue ut pharetra nibh accumsan. Phasellus dapibus risus sed purus laoreet mattis. Ut placerat imperdiet diam, ut blandit dolor auctor vel. Nunc in odio quis eros fringilla consectetur. Ut porttitor imperdiet arcu nec ultrices. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Duis hendrerit felis id mauris pulvinar faucibus sodales magna dictum.
+        </p>
+        <p>
+            Mauris in tincidunt ante. Donec fermentum varius interdum. Nulla consectetur faucibus purus, eu interdum nulla aliquet eu. Cras id lectus lacus, eleifend rhoncus lorem. Integer malesuada tristique lobortis. Phasellus a dolor non turpis euismod euismod vel a enim. Duis eu augue a elit commodo pellentesque. Ut dolor odio, ornare ac faucibus sed, tincidunt vel ipsum. Nunc et nibh eros, ut vehicula massa. Donec tempus, augue vel consequat adipiscing, nibh lacus mollis nunc, egestas commodo nisi quam sed orci.
+        </p>
+        <p>
+            Maecenas sit amet tortor nunc. Donec nec tempor augue. Mauris mi dolor, dictum et dictum a, tincidunt sit amet sapien. Nunc dapibus nunc nec arcu tristique sit amet consectetur libero eleifend. Suspendisse dignissim massa eu neque lacinia tincidunt. Vivamus vel nisl eu nulla convallis pretium. Nunc ante justo, hendrerit a malesuada vitae, semper a risus. Nunc viverra purus quis lorem cursus quis ultrices mauris ullamcorper. Pellentesque luctus, nibh vel elementum facilisis, nisi turpis aliquet augue, et feugiat nisi massa sed risus. Aenean dui velit, molestie placerat euismod vel, sodales at mauris. Donec leo felis, eleifend nec placerat sed, placerat vulputate libero.
+        </p>
+    </ui:define>
+
+</ui:composition>

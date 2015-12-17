@@ -1,0 +1,96 @@
+/*//////////////////////////
+///////LISTE POKEMON///////
+////////////////////////*/
+
+.container section .pokedex {
+    width: 100%;
+    margin-left:3.2%;
+} 
+
+.container section .pokedex ul {
+    margin: 0 24px;
+}
+
+.container section .pokedex ul li {
+    display: block;
+    width: 22%;
+    margin-right: 20px;
+    margin-bottom: 52px;
+    height:300px;
+}
+
+.container section .pokedex ul li a{
+    width: 100%;
+    height: 100%;
+}
+
+.container section .pokedex ul li a .pokemon-image {
+    background: #F2F2F2 none repeat scroll 0% 0%;
+    border-radius: 5px;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    padding: 4px 0 12px;
+}
+
+.container section .pokedex ul li a .pokemon-image img {
+    width: 100%;
+}
+
+.container section .pokedex ul li a .pokemon-info {
+    display: table;
+}
+
+.container section .pokedex ul li a .pokemon-info .id {
+    border-bottom: 2px solid #ffffff;
+    background: #ffffff none repeat scroll 0% 0%;
+    float: left;
+    margin: -12px 0px 8px;
+    width: 100px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 8px;
+    padding-top: 4px;
+    padding-left: 24px;
+    font-family: arial,sans-serif;
+    color: #919191;
+    font-size: 80%;
+    font-weight: bold;
+    display: table-row;
+}
+
+.container section .pokedex ul li a .pokemon-info .id .numero {
+    padding-bottom: 12px;
+    clear: both;
+    width: 100%;
+}
+
+.container section .pokedex ul li a .pokemon-info .nom {
+    float: left;
+    padding-left: 24px;
+    padding-right: 68px;
+    padding-bottom: 8px;
+    font-family: arial,sans-serif;
+    color: #313131;
+    text-transform: none;
+    font-size: 145%;
+    display: table-row;
+}
+
+.container section .pokedex ul li a .pokemon-info .types .type {
+    font-family: arial,sans-serif;
+    border-radius: 3px;
+    line-height: 18px;
+    max-width: 110px;
+    margin: 0px 4px 0px 0px;
+    width: 40%;
+    float: left;
+    text-transform: none;
+    font-size: 12px;
+    text-align: center;
+    padding: 2px;
+    display: table-cell;
+}
+
+.container section .pokedex ul li a .pokemon-info .types {
+    margin-left:24px;
+}

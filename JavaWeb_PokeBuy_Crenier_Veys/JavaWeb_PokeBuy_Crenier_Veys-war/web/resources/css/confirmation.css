@@ -1,0 +1,9 @@
+.confirm {
+    text-align: center;
+    font-size: 150%;
+}
+
+.confirm .imageContact img {
+    padding-left:2em;
+    width: 75%;
+}

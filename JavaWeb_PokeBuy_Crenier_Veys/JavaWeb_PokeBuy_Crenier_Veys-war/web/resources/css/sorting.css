@@ -1,0 +1,198 @@
+.button {
+  display: inline-block;
+  padding: 10px 18px;
+  margin-bottom: 10px;
+  background: #EEE;
+  border: none;
+  border-radius: 7px;
+  background-image: linear-gradient( to bottom, hsla(0, 0%, 0%, 0), hsla(0, 0%, 0%, 0.2) );
+  color: #222;
+  font-family: sans-serif;
+  font-size: 16px;
+  text-shadow: 0 1px white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #8CF;
+  text-shadow: 0 1px hsla(0, 0%, 100%, 0.5);
+  color: #222;
+}
+
+.button:active,
+.button.is-checked {
+  background-color: #28F;
+}
+
+.button.is-checked {
+  color: white;
+}
+
+.button:active {
+  box-shadow: inset 0 1px 10px hsla(0, 0%, 0%, 0.8);
+}
+
+/* ---- button-group ---- */
+
+.button-group{
+    margin-bottom: 30px;
+    text-align: center;
+    display: inline-block;
+}
+
+.button-group:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.button-group .button {
+  border-radius: 0;
+  margin-left: 0;
+  margin-right: 1px;
+}
+
+/*ACIER*/
+.button:active .type1,
+.button.is-checked.type1,
+.button:hover.type1 {
+    background: #9EB7B8 linear-gradient(180deg, #9EB7B8 50%, #9EB7B8 50%) repeat scroll 0% 0%;
+    color: #212121;
+}
+
+/*COMBAT*/
+.button:active .type2,
+.button.is-checked.type2,
+.button:hover.type2 {
+    background: #D56723 linear-gradient(180deg, #D56723 50%, #D56723 50%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+/*DRAGON*/
+.button:active .type3,
+.button.is-checked.type3,
+.button:hover.type3 {
+    background: #53A4CF linear-gradient(180deg, #53A4CF 50%, #F16E57 50%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+/*EAU*/
+.button:active .type4,
+.button.is-checked.type4,
+.button:hover.type4 {
+    background: #4592C4 linear-gradient(180deg, #4592C4 50%, #4592C4 50%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+/*ELECTRIQUE*/
+.button:active .type5,
+.button.is-checked.type5,
+.button:hover.type5 {
+    background: #EED535 linear-gradient(180deg, #EED535 50%, #EED535 50%) repeat scroll 0% 0%;
+    color: #212121;
+}
+
+/*FEE*/
+.button:active .type6,
+.button.is-checked.type6,
+.button:hover.type6 {
+    background: #FDB9E9 linear-gradient(180deg, #FDB9E9 50%, #FDB9E9 50%) repeat scroll 0% 0%;
+    color: #212121;
+}
+
+/*FEU*/
+.button:active .type7,
+.button.is-checked.type7,
+.button:hover.type7 {
+    background: #FD7D24 linear-gradient(180deg, #FD7D24 50%, #FD7D24 50%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+/*GLACE*/
+.button:active .type8,
+.button.is-checked.type8,
+.button:hover.type8 {
+    background: #51C4E7 linear-gradient(180deg, #51C4E7 50%, #51C4E7 50%) repeat scroll 0% 0%;
+    color: #212121;
+}
+
+/*INSECTE*/
+.button:active .type9,
+.button.is-checked.type9,
+.button:hover.type9 {
+    background: #729F3F linear-gradient(180deg, #729F3F 50%, #729F3F 50%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+/*NORMAL*/
+.button:active .type10,
+.button.is-checked.type10,
+.button:hover.type10 {
+    background: #A4ACAF linear-gradient(180deg, #A4ACAF 50%, #A4ACAF 50%) repeat scroll 0% 0%;
+    color: #212121;
+}
+
+/*PLANTE*/
+.button:active .type11,
+.button.is-checked.type11,
+.button:hover.type11 {
+    background: #9BCC50 linear-gradient(180deg, #9BCC50 50%, #9BCC50 50%) repeat scroll 0% 0%;
+    color: #212121;
+}
+
+/*POISON*/
+.button:active .type12,
+.button.is-checked.type12,
+.button:hover.type12 {
+    background: #B97FC9 linear-gradient(180deg, #B97FC9 50%, #B97FC9 50%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+/*PSY*/
+.button:active .type13,
+.button.is-checked.type13,
+.button:hover.type13 {
+    background: #F366B9 linear-gradient(180deg, #F366B9 50%, #F366B9 50%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+/*ROCHE*/
+.button:active .type14,
+.button.is-checked.type14,
+.button:hover.type14{
+    background: #A38C21 linear-gradient(180deg, #A38C21 50%, #A38C21 50%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+/*SOL*/
+.button:active .type15,
+.button.is-checked.type15,
+.button:hover.type15 {
+    background: #F7DE3F linear-gradient(180deg, #F7DE3F 50%, #AB9842 50%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+/*SPECTRE*/
+.button:active .type16,
+.button.is-checked.type16,
+.button:hover.type16 {
+    background: #7B62A3 linear-gradient(180deg, #7B62A3 50%, #7B62A3 50%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+/*TENEBRE*/
+.button:active .type17,
+.button.is-checked.type17,
+.button:hover.type17 {
+    background: #707070 linear-gradient(180deg, #707070 50%, #707070 50%) repeat scroll 0% 0%;
+    color: #FFF;
+}
+
+/*VOL*/
+.button:active .type18,
+.button.is-checked.type18,
+.button:hover.type18 {
+    background: #3DC7EF linear-gradient(180deg, #3DC7EF 50%, #BDB9B8 50%) repeat scroll 0% 0%;
+    color: #212121;
+}
+

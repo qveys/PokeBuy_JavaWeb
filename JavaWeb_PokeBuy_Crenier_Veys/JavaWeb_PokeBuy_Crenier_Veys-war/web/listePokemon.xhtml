@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./pokeTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view locale="#{langageController.locale}"/>
+
+    <ui:define name="head">
+        <h:outputStylesheet name="./css/sorting.css"/>
+        <h:outputStylesheet name="./css/listPokemon.css"/>
+        <h:outputScript name="./script/isotope.min.js" />
+    </ui:define>
+
+    <ui:define name="section">
+
+        <div class="button-group filters-button-group">
+
+            <button class="button is-checked" data-filter="*">
+                <h:outputText value="#{lang.tousType}"/>
+            </button>
+
+            <c:forEach items="#{typeController.listTypeByLangue}" var="type">
+                <button class="button #{type.value.type.getSortingType()}" data-filter=".#{type.value.type.getSortingType()}">
+                    <h:outputText class="title" value="#{type.value.libelleType}"/>
+                </button>
+            </c:forEach>
+
+        </div>
+
+        <h:form>
+            <div class="pokedex">
+                <ul>
+                    
+                    <c:forEach items="#{pokemonController.listPokemonByLangue}" var="result">
+                        
+                        <li class="element-item #{pokemonController.getTypesSorting(result.value.pokemon.types)}">
+                            <h:commandLink action="#{pokemonController.details(result.value)}">
+                                
+                                <div class="pokemon-image">
+                                    <h:graphicImage url="#{result.value.pokemon.cheminImg}" />
+                                </div>
+                                
+                                <div class="pokemon-info">
+                                    
+                                    <span class="id">
+                                        <span class="numero">
+                                            <span>No.</span>
+                                            <h:outputText value="#{result.value.pokemon.fullIdPokemon}"/>
+                                        </span>
+                                    </span>
+                                   
+                                    <h:outputText class="nom" value="#{result.value.libellePokemon}"/>
+                                    
+                                    <div class="types">
+                                        <c:forEach items="#{result.value.pokemon.types}" var="type">
+                                            <h:outputText class="type #{type.getClassType()}" value="#{typeController.getOneTypeByLangue(type.idType).libelleType}"/>
+                                        </c:forEach>
+                                    </div>
+                                
+                                </div>
+                            </h:commandLink>
+                        </li>
+                        
+                    </c:forEach>
+                    
+                </ul>
+            </div>
+        </h:form>
+        <h:outputScript name="./script/sorting.js" />
+
+    </ui:define>
+
+</ui:composition>

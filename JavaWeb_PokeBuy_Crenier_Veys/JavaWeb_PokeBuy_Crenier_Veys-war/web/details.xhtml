@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./pokeTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view locale="#{langageController.locale}"/>
+
+    <ui:define name="head">
+        <h:outputStylesheet name="./css/detailsPokemon.css"/>
+        <h:outputScript name="./script/ajoutPanier.js"/>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <div class="pokemon-pagination">
+                <h:commandLink action="#{pokemonController.details(pokemonController.previous)}" class="previous">
+                    <div>
+                        <h:outputText class="fleche" value="&lt;"/>
+                        <span class="id">
+                            <span class="numero">
+                                <span>No.</span>
+                                <h:outputText value="#{pokemonController.previous.pokemon.fullIdPokemon}"/>
+                            </span>
+                        </span>
+                        <h:outputText class="nom" value="#{pokemonController.previous.libellePokemon}"/>
+                    </div>
+                </h:commandLink>
+                <h:commandLink action="#{pokemonController.details(pokemonController.next)}" class="next">
+                    <div>
+                        <h:outputText class="fleche" value="&gt;"/>
+                        <span class="id">
+                            <span class="numero">
+                                <span>No.</span>
+                                <h:outputText value="#{pokemonController.next.pokemon.fullIdPokemon}"/>
+                            </span>
+                        </span>
+                        <h:outputText class="nom" value="#{pokemonController.next.libellePokemon}"/>
+                    </div>
+                </h:commandLink>
+            </div>
+            <div class="pokemon-pagination-title">
+                <div>
+                    <h:outputText class="nom" value="#{pokemonController.currentPokemon.libellePokemon}"/>
+                    <span class="id">
+                        <span class="numero">
+                            <span>No.</span>
+                            <h:outputText value="#{pokemonController.currentPokemon.pokemon.fullIdPokemon}"/>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="section">
+        <div class="pokemon-details">
+            <div class="pokemon-details-left">
+                <div class="pokemon-details-image">
+                    <h:graphicImage url="#{pokemonController.currentPokemon.pokemon.cheminImgDetails}" />
+                </div>
+                <div class="pokemon-details-info">
+                    <div class="types">
+                        <h3>
+                            <h:outputText value="#{lang.type}"/>
+                        </h3>
+                        <c:forEach items="#{pokemonController.currentPokemon.pokemon.types}" var="type">
+                            <h:outputText class="type #{type.getClassType()}" value="#{typeController.getOneTypeByLangue(type.idType).libelleType}"/>
+                        </c:forEach>
+                    </div>
+
+                    <div class="faiblesses">
+                        <h3>
+                            <h:outputText value="#{lang.faiblesse}"/>
+                        </h3>
+                        <c:forEach items="#{pokemonController.currentPokemon.pokemon.faiblesses}" var="faiblesse">
+                            <h:outputText class="type #{faiblesse.getClassType()}" value="#{typeController.getOneTypeByLangue(faiblesse.idType).libelleType}"/>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+            <div class="pokemon-details-right">
+                <div class="pokemon-description">
+                    <h:outputText value="#{pokemonController.currentPokemon.descriptionPokemon}"/>
+                </div>
+
+                <div class="quantite">
+                    <h:outputText id="qte" value="#{lang.quantite}"/>
+                    <h:form>
+                        <h:commandLink class="bouton moins">
+                            <span><h:outputText value="-"/></span>
+                            <f:ajax event="click" listener="#{pokemonController.suppQtePokemon()}" render="quantite"/>
+                        </h:commandLink>
+
+                        <h:outputText id="quantite" value="#{pokemonController.qtePokemon}"/>
+
+                        <h:commandLink class="bouton plus">
+                            <span><h:outputText value="+"/></span>
+                            <f:ajax event="click" listener="#{pokemonController.ajoutQtePokemon()}" render="quantite"/>
+                        </h:commandLink>
+                    </h:form>
+                </div>
+
+                <div class="pokemon-prix">
+                    <div class="pokemon-prix-left">
+                        <h:outputText class="prix" value="#{pokemonController.currentPokemon.pokemon.prix}">
+                            <f:convertNumber type="currency" currencySymbol="€"/>
+                        </h:outputText>
+                    </div>
+                    <div class="pokemon-prix-right">
+                        <h:form>
+                            <h:commandLink class="acheter">
+                                <span><h:outputText value="#{lang.acheter}"/></span>
+                                <f:ajax event="click" listener="#{panierController.getAjoutPanier(pokemonController.currentPokemon.pokemon, pokemonController.qtePokemon)}" render="panierDroite total"/>
+                                <svg x="0px" y="0px" width="60px" height="60px" viewBox="0 0 32 32">
+                                    <path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/>
+                                </svg>
+                            </h:commandLink>
+                        </h:form>
+                    </div>
+                </div>
+                <div class="pokemon-description-info">
+                    <div class="pokemon-description-info-left">
+                        <h:outputText class="titre" value="#{lang.taille}" />
+                        <h:outputText class="valeur" value="#{pokemonController.currentPokemon.pokemon.taille} m" />
+                        <h:outputText class="titre" value="#{lang.poids}" />
+                        <h:outputText class="valeur" value="#{pokemonController.currentPokemon.pokemon.poids} kg" />
+                    </div>
+                    <div class="pokemon-description-info-right">
+                        <h:outputText class="titre" value="#{lang.categorie}" />
+                        <h:outputText class="valeur" value="#{categorieController.getOneCategorieByLangue(pokemonController.currentPokemon.pokemon.categorie.idCategorie).libelleCategorie}" />
+                        <h:outputText class="titre" value="#{lang.talent}" />
+                        <c:forEach items="#{pokemonController.currentPokemon.pokemon.talents}" var="talent">
+                            <span class="talent">
+                                <h:outputText class="valeurTalent" value="#{talentController.getOneTalentByLangue(talent.idTalent).libelleTalent}" />
+                                <a class="tooltip" href="">?
+                                    <span>
+                                        #{talentController.getOneTalentByLangue(talent.idTalent).descriptionTalent}
+                                    </span>
+                                </a>
+                            </span>
+                        </c:forEach>
+                    </div>
+
+                </div>
+                <div class="pokemon-stats">
+                    <h3><h:outputText value="#{lang.stat}"/></h3>
+                    <ul>
+                        <li>
+                            <ul>
+                                <li data-value="2" style="top: #{pokemonController.getStatsPourc(pokemonController.currentPokemon.pokemon.pointsVie)}%;"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <span><h:outputText value="#{lang.pv}"/></span>
+                        </li>
+
+                        <li>
+                            <ul>
+                                <li data-value="3" style="top: #{pokemonController.getStatsPourc(pokemonController.currentPokemon.pokemon.pointsAttaque)}%;"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <span><h:outputText value="#{lang.attaque}"/></span>
+                        </li>
+
+                        <li>
+                            <ul>
+                                <li data-value="2" style="top: #{pokemonController.getStatsPourc(pokemonController.currentPokemon.pokemon.pointsDefense)}%;"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <span><h:outputText value="#{lang.defense}"/></span>
+                        </li>
+
+                        <li>
+                            <ul>
+                                <li data-value="3" style="top: #{pokemonController.getStatsPourc(pokemonController.currentPokemon.pokemon.pointsAttaqueSpeciale)}%;"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <span><h:outputText value="#{lang.attaqueSpe}"/></span>
+                        </li>
+
+                        <li>
+                            <ul>
+                                <li data-value="2" style="top: #{pokemonController.getStatsPourc(pokemonController.currentPokemon.pokemon.pointsDefenseSpeciale)}%;"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <span><h:outputText value="#{lang.defenseSpe}"/></span>
+                        </li>
+
+                        <li>
+                            <ul>
+                                <li data-value="4" style="top: #{pokemonController.getStatsPourc(pokemonController.currentPokemon.pokemon.pointsVitesse)}%;"></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <span><h:outputText value="#{lang.vitesse}"/></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+
+</ui:composition>

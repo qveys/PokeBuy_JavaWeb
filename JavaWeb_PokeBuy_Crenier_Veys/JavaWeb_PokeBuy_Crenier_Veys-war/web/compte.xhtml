@@ -1,0 +1,306 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./pokeTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view locale="#{langageController.locale}"/>
+
+    <ui:define name="head">
+        <h:outputStylesheet name="./css/compte.css"/>
+    </ui:define>
+
+    <ui:define name="section">
+
+        <marquee Class="Scroller" behavior="scroll" direction="left" scrollamount="4" scrolldelay="0">
+            <strong>
+                <em><h:outputText value="#{lang.bienvenue} " />
+                    <c:if test="#{clientController.isConnected}">
+                        <h:outputText value=" #{clientController.clientActuel.prenomClient}"/>
+                    </c:if>
+                </em> 
+                <h:outputText value="#{lang.bienvenueSuite}" />
+                <h:outputText value="#{lang.promo}" />
+            </strong>
+        </marquee>
+
+        <c:choose>
+            <c:when test="#{!clientController.isConnected}">
+                <div class="login">
+                    <div class="connection">
+
+                        <h:form>
+
+                            <h1><h:outputText value="#{lang.connexion}"/></h1>
+
+                            <span class="input input-filled">
+                                <h:inputText value="#{clientController.email}" styleClass="input_field" id="inputConnectionLogin" required="true" requiredMessage="#{lang.entrerVotreMail}" validatorMessage="#{lang.emailInvalide}">
+                                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                    <f:ajax event="valueChange" execute="@this" render="messageInputConnectionLogin" />
+                                </h:inputText>
+                                <label class="input_label" for="inputConnectionLogin">
+                                    <span class="input_label-content" data-content="#{lang.login}">
+                                        <h:outputText value="#{lang.login}" />
+                                    </span>
+                                </label>
+                            </span>
+
+                            <p class="messageErreur">
+                                <h:message for="inputConnectionLogin" id="messageInputConnectionLogin"/>
+                            </p>
+
+
+
+                            <span class="input input-filled">
+                                <h:inputSecret value="#{clientController.motDePasse}" class="input_field" id="inputConnectionPassword" required="true" requiredMessage="#{lang.entrerVotreMDP}" >
+                                    <f:validator validatorId="passwordValidator"/>
+                                    <f:ajax event="valueChange" execute="@this" render="messageInputConnectionPassword" />
+                                </h:inputSecret>
+                                <label class="input_label" for="inputConnectionPassword">
+                                    <span class="input_label-content" data-content="#{lang.motDePasse}">
+                                        <h:outputText value="#{lang.motDePasse}" />
+                                    </span>
+                                </label>
+                            </span>
+
+                            <p class="messageErreur">
+                                <h:message for="inputConnectionPassword" id="messageInputConnectionPassword"/>
+                            </p>
+
+
+
+                            <div class="newConnection">
+                                <h:commandLink class="btnInscription" id="connection" action="#{clientController.connection()}">
+                                    <span>
+                                        <h:outputText  value="#{lang.seConnecter}"/>
+                                    </span>
+                                    <f:ajax execute="@form" render="@form" />
+                                </h:commandLink>
+                            </div>
+
+                            <p>
+                                <h:messages styleClass="messageErreurGlobal" globalOnly="true" />
+                            </p>
+
+                        </h:form>
+                    </div>            
+
+                    <div class="inscription">
+                        <h:form>
+
+                            <h1><h:outputText value="#{lang.inscription}"/></h1>
+
+
+                            <span class="input input-filled">
+                                <h:inputText value="#{clientController.nomClient}" class="input_field" id="inputRegisterName" required="true" requiredMessage="#{lang.entrerVotreNom}" validatorMessage="#{lang.nomInvalide}">
+                                    <f:validateRegex pattern="^[a-zA-ZÀ-ÿ]{1}(?!.*([\s\’-])\1)[a-zA-ZÀ-ÿ\s\’-]{0,28}[a-zA-ZÀ-ÿ]{1}$"/>
+                                    <f:ajax event="valueChange" execute="@this" render="messageInputRegisterName" />
+                                </h:inputText>
+                                <label class="input_label" for="inputRegisterName">
+                                    <span class="input_label-content" data-content="#{lang.nom}">
+                                        <h:outputText value="#{lang.nom}" />
+                                    </span>
+                                </label>
+                            </span>
+
+                            <p class="messageErreur">
+                                <h:message for="inputRegisterName" id="messageInputRegisterName"/>
+                            </p>
+
+
+
+                            <span class="input input-filled">
+                                <h:inputText value="#{clientController.prenomClient}" class="input_field" id="inputRegisterFirstName" required="true" requiredMessage="#{lang.entrerVotrePrenom}" validatorMessage="#{lang.nomInvalide}">
+                                    <f:validateRegex pattern="^[a-zA-ZÀ-ÿ]{1}(?!.*([\s\’-])\1)[a-zA-ZÀ-ÿ\s\’-]{0,28}[a-zA-ZÀ-ÿ]{1}$"/>
+                                    <f:ajax event="valueChange" execute="@this" render="messageInputRegisterFirstName" />
+                                </h:inputText>
+                                <label class="input_label" for="inputRegisterFirstName">
+                                    <span class="input_label-content" data-content="#{lang.prenom}">
+                                        <h:outputText value="#{lang.prenom}" />
+                                    </span>
+                                </label>
+                            </span>
+
+                            <p class="messageErreur">
+                                <h:message for="inputRegisterFirstName" id="messageInputRegisterFirstName"/>
+                            </p>
+
+
+
+                            <span class="input input-filled">
+                                <h:inputText value="#{clientController.email}" class="input_field" id="inputRegisterMail" required="true" requiredMessage="#{lang.entrerVotreMail}">
+                                    <f:validator validatorId="emailInscriptionValidator" />
+                                    <f:ajax event="valueChange" execute="@this" render="messageInputRegisterMail" />
+                                </h:inputText>
+                                <label class="input_label" for="inputRegisterMail">
+                                    <span class="input_label-content" data-content="#{lang.adresseMail}">
+                                        <h:outputText value="#{lang.adresseMail}" />
+                                    </span>
+                                </label>
+                            </span>
+
+                            <p class="messageErreur">
+                                <h:message for="inputRegisterMail" id="messageInputRegisterMail"/>
+                            </p>
+
+
+
+                            <span class="input input-filled">
+                                <h:inputSecret value="#{clientController.motDePasse}" class="input_field" id="inputRegisterPassword" required="true" requiredMessage="#{lang.entrerVotreMDP}">
+                                    <f:validator validatorId="passwordValidator"/>
+                                    <f:ajax event="valueChange" execute="@this" render="messageInputRegisterPassword" />
+                                </h:inputSecret>
+                                <label class="input_label" for="inputRegisterPassword">
+                                    <span class="input_label-content" data-content="#{lang.motDePasse}">
+                                        <h:outputText value="#{lang.motDePasse}" />
+                                    </span>
+                                </label>
+                            </span>
+
+                            <p class="messageErreur">
+                                <h:message for="inputRegisterPassword" id="messageInputRegisterPassword"/>
+                            </p>
+
+
+
+                            <span class="input input-filled">
+                                <h:inputSecret value="#{clientController.confirmMDP}" class="input_field" id="inputRegisterPassword2" required="true" requiredMessage="#{lang.entrerVotreMDP}" >
+                                    <f:validator validatorId="passwordValidator"/>
+                                    <f:validator validatorId="samePasswordValidator"/>
+                                    <f:attribute name="mdp1" value="#{clientController.motDePasse}"/>
+                                    <f:attribute name="mdp2" value="#{clientController.confirmMDP}"/>
+                                    <f:ajax event="valueChange" execute="@this" render="messageInputRegisterPassword2" />
+                                </h:inputSecret>
+                                <label class="input_label" for="inputRegisterPassword2">
+                                    <span class="input_label-content" data-content="#{lang.motDePasse}">
+                                        <h:outputText value="#{lang.motDePasse}" />
+                                    </span>
+                                </label>
+                            </span>
+
+                            <p class="messageErreur">
+                                <h:message for="inputRegisterPassword2" id="messageInputRegisterPassword2"/>
+                            </p>
+
+
+
+                            <span class="input input-filled">
+                                <h:inputText value="#{clientController.numTel}" class="input_field" id="inputRegisterPhone" required="true" requiredMessage="#{lang.entrerVotrePhone}" validatorMessage="#{lang.phoneInvalid}">
+                                    <f:validateRegex pattern="^\+?(\d?){8,}$" />
+                                    <f:ajax event="valueChange" execute="@this" render="messageInputRegisterPhone" />
+                                </h:inputText>
+                                <label class="input_label" for="inputRegisterPhone">
+                                    <span class="input_label-content" data-content="#{lang.numTel}">
+                                        <h:outputText value="#{lang.numTel}" />
+                                    </span>
+                                </label>
+                            </span>
+
+                            <p class="messageErreur">
+                                <h:message for="inputRegisterPhone" id="messageInputRegisterPhone"/>
+                            </p>
+
+
+
+                            <span class="input input-filled">
+                                <h:inputText value="#{clientController.adrNomRue}" class="input_field" id="inputRegisterAddress" required="true" requiredMessage="#{lang.entrerVotreAdresse}">
+                                    <f:ajax event="valueChange" execute="@this" render="messageInputRegisterAddress" />
+                                </h:inputText>
+                                <label class="input_label" for="inputRegisterAddress">
+                                    <span class="input_label-content" data-content="#{lang.adresse}">
+                                        <h:outputText value="#{lang.adresse}" />
+                                    </span>
+                                </label>
+                            </span>
+
+                            <p class="messageErreur">
+                                <h:message for="inputRegisterAddress" id="messageInputRegisterAddress"/>
+                            </p>
+
+
+
+                            <span class="input postCodeCity">
+                                <div class="postCode">
+                                    <h:inputText value="#{clientController.postCode}" class="field_input" required="true" requiredMessage="#{lang.entrerVotrePostCode}" converterMessage="#{lang.postCodeInvalid}" id="inputRegisterPostCode">
+                                        <f:convertNumber groupingUsed="false" integerOnly="true" />
+                                        <f:validator validatorId="postCodeValidator"/>
+                                        <f:ajax event="valueChange" execute="@this" render="messageInputRegisterPostCode selectMenu"/>
+                                    </h:inputText>
+                                    <label class="label_input" for="inputRegisterPostCode">
+                                        <span class="input_label-content" data-content="#{lang.codePostal}">
+                                            <h:outputText value="#{lang.codePostal}"/>
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="select-style city">
+                                    <h:selectOneMenu id="selectMenu" value="#{clientController.ville}">
+                                        <f:selectItems value="#{clientController.getLocaliteByPostCode()}" var="entry" itemValue="#{entry.ville}" itemLabel="#{entry.ville}" />
+                                    </h:selectOneMenu>
+                                </div>
+                            </span>
+
+                            <p class="messageErreur">
+                                <h:message for="inputRegisterPostCode" id="messageInputRegisterPostCode"/>
+                            </p>
+
+                            <p class="publicite">
+                                <h:selectBooleanCheckbox id="pub" value="#{clientController.publicité}"/>
+                                <h:outputLabel for="pub">
+                                    <span class="ui"></span>
+                                    <h:outputText value="#{lang.recevoirPub}" class="texte"/>
+                                </h:outputLabel>
+                            </p>
+
+
+                            <div class="newInscription">
+                                <h:commandLink class="btnInscription" action="#{clientController.createNewClient()}">
+                                    <span>
+                                        <h:outputText value="#{lang.sInscrire}"/>
+                                    </span>
+                                    <f:ajax execute="@form" render="@form" />
+                                </h:commandLink>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                <h:outputScript name="./script/form.js"></h:outputScript>
+                <h:outputScript>
+                    $(document).ready(function() {
+                    setTimeout(function(){
+                    document.querySelectorAll('form')[1].getElementsByTagName('span')[0].classList += "input--filled";
+                    document.querySelectorAll('form')[1].getElementsByTagName('span')[0].getElementsByTagName('input')[0].focus();
+                    }, 500);
+                    });
+                </h:outputScript>
+            </c:when>
+            <c:otherwise>
+
+                <h1><h:outputText value="#{lang.menu5Bis}"/></h1>
+
+                <p><h:outputText value="#{lang.nom}"/> : <h:outputText value="#{clientController.clientActuel.nomClient}"/></p>
+                <p><h:outputText value="#{lang.prenom}"/> : <h:outputText value="#{clientController.clientActuel.prenomClient}"/></p>
+                <p><h:outputText value="#{lang.adresseMail}"/> : <h:outputText value="#{clientController.clientActuel.email}"/></p>
+                <p><h:outputText value="#{lang.numTel}"/> : <h:outputText value="#{clientController.clientActuel.numTel}"/></p>
+                <p><h:outputText value="#{lang.adresse}"/> : <h:outputText value="#{clientController.clientActuel.adrNomRue}"/></p>
+                <p><h:outputText value="#{lang.localite}"/> : <h:outputText value="#{clientController.clientActuel.localite.codePostal}"/>  <h:outputText value="#{clientController.clientActuel.localite.ville}"/></p>
+
+                <h:form>
+                    <div class="newConnection">
+                        <h:commandLink class="btnInscription" id="connection" action="#{clientController.deconnection()}">
+                            <span>
+                                <h:outputText  value="#{lang.deconnection}"/>
+                            </span>
+                            <f:ajax execute="@form" render="@form" />
+                        </h:commandLink>
+                    </div>
+                </h:form>
+
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+
+
+</ui:composition>

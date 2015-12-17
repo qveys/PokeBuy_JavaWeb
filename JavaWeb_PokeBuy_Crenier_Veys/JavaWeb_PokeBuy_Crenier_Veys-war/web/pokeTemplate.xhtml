@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <f:view locale="#{langageController.locale}"/>
+    <f:loadBundle basename="languages.lang" var="lang"/>
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <h:outputStylesheet name="./css/general.css"/>
+        <h:outputStylesheet name="./css/navigation.css"/>
+
+        <h:outputScript name="./script/jquery-2.1.4.min.js"/>
+        <h:outputScript name="./script/main.js"/>
+
+        <ui:insert name="head"/>
+
+        <title>Pokebuy</title>
+    </h:head>
+
+    <h:body>
+
+        <header>
+
+            <div class="barreTitre">
+                <div class="logo">
+                    <h:graphicImage url="resources/img/logo.png"/>
+                </div>
+                <ui:insert name="top"/>
+            </div>
+
+            <nav>
+                <div class="nav">
+                    <ul>
+
+                        <li class="accueil">
+                            <h:link outcome="index.xhtml">
+                                <span class="fill"></span>
+                                <span class="icon icon_home"></span>
+                                <span class="title">
+                                    <h:outputText value="#{lang.home}" />
+                                </span>
+                            </h:link>
+                        </li>
+
+                        <li class="menu1">
+                            <h:link outcome="listePokemon.xhtml" class="active">
+                                <span class="fill"></span>
+                                <span class="icon icon_pokeball"></span>
+                                <span class="title">
+                                    <h:outputText value="#{lang.menu1}" />
+                                </span>
+                            </h:link>
+                        </li>
+
+                        <li class="menu2">
+                            <h:form>
+                                <h:commandLink action="#{pokemonController.aleatoirePokemon()}">
+                                    <span class="fill"></span>
+                                    <span class="icon icon_pokemontv"></span>
+                                    <span class="title">
+                                        <h:outputText value="#{lang.menu2}" />
+                                    </span>
+                                </h:commandLink>
+                            </h:form>
+                        </li>
+
+                        <li class="menu3">
+                            <h:link outcome="recherche.xhtml">
+                                <span class="fill"></span>
+                                <span class="icon icon_pokemontv"></span>
+                                <span class="title">
+                                    <h:outputText value="#{lang.menu3}" />
+                                </span>
+                            </h:link>
+                        </li>
+
+                        <li class="menu4">
+                            <h:link outcome="panier.xhtml">
+                                <span class="fill"></span>
+                                <span class="icon icon_cards"></span>
+                                <span class="title">
+                                    <h:outputText value="#{lang.menu4}" />
+                                </span>
+                            </h:link>
+                        </li>
+
+                        <li class="menu5">
+                            <h:link outcome="compte.xhtml">
+                                <span class="fill"></span>
+                                <span class="icon icon_videogame"></span>
+                                <span class="title">
+                                    <c:choose>
+                                        <c:when test="#{!clientController.isConnected}">
+                                            <h:outputText value="#{lang.menu5}" />
+                                        </c:when>
+                                        <c:otherwise>
+                                            <h:outputText value="#{lang.menu5Bis}" />
+                                        </c:otherwise>
+                                    </c:choose>
+                                </span>
+                            </h:link>
+                        </li>
+
+                        <li class="menu6">
+                            <h:link outcome="contact.xhtml">
+                                <span class="fill"></span>
+                                <span class="icon icon_event"></span>
+                                <span class="title">
+                                    <h:outputText value="#{lang.menu6}" />
+                                </span>
+                            </h:link>
+                        </li>
+
+                    </ul>
+                </div>  
+
+                <div id="panier-logo">
+                    <a class="cd-img-replace" href="#0">
+                        <h:outputText value="#{lang.panier}" />
+                    </a>
+                </div>
+
+            </nav>
+
+        </header>
+
+        <div class="container">
+            <ui:insert name="content"></ui:insert>
+            <section>
+                <ui:insert name="section"></ui:insert>
+            </section>
+        </div>
+
+        <div id="cd-shadow-layer"></div>
+
+        <div id="cd-cart"> 
+
+            <h1><h:outputText value="#{lang.monPanier}"/></h1>
+
+            <h:dataTable id="panierDroite" class="cd-cart-items" var="item" value="#{panierController.panier}">
+                <h:column>
+                    <h:graphicImage class="cd-img" url="#{item.pokemon.cheminImg}"/>
+                </h:column>
+                <h:column>
+                    <span class="cd-qty"><h:outputText value="#{item.quantite}x "/></span>
+                    <h:outputText value="#{pokemonController.getOnePokemonByLangue(item.pokemon.idPokemon).libellePokemon}" />
+                </h:column>
+                <h:column>
+                    <div class="cd-price">
+                        <h:outputText value="#{item.prixUnitaire}">
+                            <f:convertNumber type="currency" currencySymbol="€" />
+                        </h:outputText>
+                    </div>
+                </h:column>
+            </h:dataTable>
+
+            <div class="cd-cart-total">
+                <p>
+                    <h:outputText value="#{lang.total}" />
+                    <span>
+                        <h:outputText id="total" value="#{panierController.totalCommande}">
+                            <f:convertNumber type="currency" currencySymbol="€" />
+                        </h:outputText> 
+                    </span>
+                </p>
+            </div>
+
+            <!--c:if test="{panierController.totalCommande gt 1000}">
+                <p><h:outputText value="{panierController.dixPourCentTotal}">
+                        <f:convertNumber type="currency" currencySymbol="€" />
+                    </h:outputText>
+                    <h:outputText value="textPromo"/>
+                </p>
+            </c:if-->
+
+            <c:choose>
+                <c:when test="#{clientController.isConnected and !panierController.emptyListPanier}">
+                    <h:form>
+                        <h:commandLink class="checkout-btn" action="#{panierController.enregistrerCommande(clientController.clientActuel)}" >
+                            <h:outputText value="#{lang.verifier}" />
+                        </h:commandLink>
+                    </h:form>
+                </c:when>
+                <c:otherwise>
+                    <c:if test="#{!panierController.emptyListPanier}">
+                        <p align="center">
+                            <h:outputText value="#{lang.connectionRequise}"/>
+                        </p>
+                    </c:if>
+                </c:otherwise>
+            </c:choose>
+            <p class="cd-go-to-cart"><h:link outcome="panier.xhtml" value="#{lang.allerAuPanier}"/></p>
+        </div>
+
+        <footer>
+            <h:form>
+
+                <h:commandButton value="#{lang.francais}" action="#{langageController.setToFrancais()}" class="petitbtn"/>
+
+                <h:commandButton value="#{lang.anglais}" action="#{langageController.setToEnglish()}" class="petitbtn"/>
+
+                <h:commandButton value="#{lang.allemand}" action="#{langageController.setToAllemand()}" class="petitbtn"/>
+
+            </h:form>
+            <p>PokeBuy ®</p>
+            <p>Bachelier 3 en Informatique de gestion, dans le cadre du cours de Programmation Web Orientée Objet</p>
+            <p>Année scolaire 2015-2016, CRENIER Charlotte &amp; VEYS Quentin ©</p>
+            <ui:insert name="bottom"></ui:insert>
+        </footer>
+
+    </h:body>
+
+</html>
